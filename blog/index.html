@@ -22,6 +22,7 @@
       <li><a href="../services.html">خدمات</a></li>
       <li><a href="../resume.html">سوابق و رزومه</a></li>
       <li><a href="index.html" class="active">مقالات</a></li>
+      <li><a href="../en/blog/index.html" class="lang-switch">EN</a></li>
       <li><a href="../contact.html" class="nav-cta">تماس با من</a></li>
     </ul>
   </nav>
@@ -37,32 +38,8 @@
 
 <section class="reveal">
   <div class="wrap">
-    <div class="grid-3">
-      <div class="post-card">
-        <div class="post-thumb"></div>
-        <div class="post-body">
-          <div class="post-meta">LEAN CONSTRUCTION</div>
-          <h3>ساخت‌وساز ناب چیست و چرا پروژه‌های عمرانی ایران به آن نیاز دارند؟</h3>
-          <p>معرفی اصول Lean Construction و کاربرد عملی آن در کاهش هدررفت منابع در کارگاه‌های ساختمانی.</p>
-          <a class="more" href="lean-construction-chist.html">ادامه مطلب ←</a>
-        </div>
-      </div>
-      <div class="post-card soon">
-        <div class="post-thumb"></div>
-        <div class="post-body">
-          <div class="post-meta">به‌زودی</div>
-          <h3>۵ اشتباه رایج در مدیریت دانش پروژه‌های ساختمانی</h3>
-          <p>این مقاله در حال آماده‌سازی است.</p>
-        </div>
-      </div>
-      <div class="post-card soon">
-        <div class="post-thumb"></div>
-        <div class="post-body">
-          <div class="post-meta">به‌زودی</div>
-          <h3>Primavera P6 چطور بهره‌وری زمان‌بندی پروژه را بالا می‌برد؟</h3>
-          <p>این مقاله در حال آماده‌سازی است.</p>
-        </div>
-      </div>
+    <div class="grid-3" id="posts-grid">
+      <!-- Content generated dynamically from ../data/posts.json by js/main.js -->
     </div>
   </div>
 </section>
@@ -89,6 +66,7 @@
   </div>
 </footer>
 
+<script>window.SITE_ROOT = "../"; window.SITE_LANG = "fa";</script>
 <script src="../js/main.js"></script>
 </body>
 </html>

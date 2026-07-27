@@ -1,0 +1,53 @@
+{
+  "_readme": "این فایل، پروژه‌های نمایش داده‌شده در بخش «نمونه پروژه‌های کلیدی» سایت رو مدیریت می‌کنه. برای افزودن پروژه‌ی جدید، یک آبجکت جدید مثل نمونه‌های زیر به آرایه اضافه کن. عکس‌ها رو در پوشه‌ی images/projects/ قرار بده. ترتیب آرایه = ترتیب نمایش در سایت (جدیدترین را اول قرار بده).",
+  "projects": [
+    {
+      "id": "iranmall",
+      "image": "images/projects/project-iranmall.jpg",
+      "title_fa": "ایران‌مال",
+      "title_en": "Iran Mall",
+      "role_fa": "مشاور قراردادهای مهندسی · مدیریت بیش از ۳۰ قرارداد اجرایی",
+      "role_en": "Engineering Contracts Consultant · Managed 30+ execution contracts"
+    },
+    {
+      "id": "tabarakabad-dam",
+      "image": "images/projects/project-tabarakabad-dam.jpg",
+      "title_fa": "سد طبرک‌آباد",
+      "title_en": "Tabarak Abad Dam",
+      "role_fa": "مدیریت اجرایی پروژه سد و سازه‌های آبی",
+      "role_en": "Executive project management — dam and hydraulic structures"
+    },
+    {
+      "id": "kamandan-dam",
+      "image": "images/projects/project-kamandan-dam.jpg",
+      "title_fa": "سد کمندان",
+      "title_en": "Kamandan Dam",
+      "role_fa": "مدیریت اجرایی پروژه سد و سازه‌های آبی",
+      "role_en": "Executive project management — dam and hydraulic structures"
+    },
+    {
+      "id": "kermanshah",
+      "image": "images/projects/project-kermanshah.jpg",
+      "title_fa": "مجتمع مسکونی کرمانشاه",
+      "title_en": "Kermanshah Residential Complex",
+      "role_fa": "مدیریت اجرایی پروژه ساختمانی",
+      "role_en": "Executive construction project management"
+    },
+    {
+      "id": "andishe",
+      "image": "images/projects/project-andishe.jpg",
+      "title_fa": "پروژه اندیشه",
+      "title_en": "Andishe Project",
+      "role_fa": "مدیریت اجرایی و نظارت فنی پروژه",
+      "role_en": "Execution management and technical supervision"
+    },
+    {
+      "id": "project-01",
+      "image": "images/projects/project-01.jpg",
+      "title_fa": "توسعه تجاری-اداری",
+      "title_en": "Mixed-Use Commercial Development",
+      "role_fa": "مشاوره مدیریت ساخت",
+      "role_en": "Construction management consulting"
+    }
+  ]
+}

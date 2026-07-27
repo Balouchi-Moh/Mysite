@@ -13,7 +13,6 @@
 <meta property="og:image" content="images/profile.jpg">
 <meta property="og:locale" content="fa_IR">
 <link rel="icon" href="data:,">
-<meta name="google-site-verification" content="EeOa5ISnkLwa34XFbF3bLbma13BxE5CqHMmRgTeCrvs" />
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -30,6 +29,7 @@
       <li><a href="services.html">خدمات</a></li>
       <li><a href="resume.html">سوابق و رزومه</a></li>
       <li><a href="blog/index.html">مقالات</a></li>
+      <li><a href="en/index.html" class="lang-switch">EN</a></li>
       <li><a href="contact.html" class="nav-cta">تماس با من</a></li>
     </ul>
   </nav>
@@ -41,7 +41,7 @@
       <div class="eyebrow">CONSTRUCTION MANAGEMENT CONSULTANT</div>
       <h1 class="hero-title">مدیریت پروژه‌های عمرانی، با نگاه <em>ناب</em> و مبتنی بر داده</h1>
       <p class="hero-desc">
-        محمد بلوچی هستم؛ دکترای مدیریت ساخت، با بیش از ۱۵ سال تجربه‌ی اجرایی در پروژه‌های بزرگ عمرانی ایران به‌عنوان مشاور مستقل، به کارفرمایان و پیمانکاران در پیاده‌سازی ساخت‌وساز ناب، مدیریت دانش و روش‌های نوین مدیریت پروژه کمک می‌کنم.
+        محمد بلوچی هستم؛ دکترای مدیریت ساخت، با بیش از ۱۵ سال تجربه‌ی اجرایی در پروژه‌های بزرگ عمرانی ایران (از جمله ایران‌مال). امروز به‌عنوان مشاور مستقل، به کارفرمایان و پیمانکاران در پیاده‌سازی ساخت‌وساز ناب، مدیریت دانش و روش‌های نوین مدیریت پروژه کمک می‌کنم.
       </p>
       <div class="hero-tags">
         <span class="tag">Lean Construction</span>
@@ -69,7 +69,7 @@
       <div class="stat"><b>+۱۵</b><span>سال تجربه اجرایی</span></div>
       <div class="stat"><b>+۱۵</b><span>پروژه تحقیق و توسعه</span></div>
       <div class="stat"><b>+۳۰</b><span>قرارداد مهندسی مدیریت‌شده</span></div>
-      <div class="stat"><b>۱</b><span>بزرگ‌ترین مرکز خرید ایران</span></div>
+      <div class="stat"><b>۱</b><span>بزرگ‌ترین مرکز خرید جهان</span></div>
     </div>
   </div>
 </section>
@@ -147,6 +147,19 @@
   </div>
 </section>
 
+<section class="alt reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">NOTABLE PROJECTS</div>
+      <h2 class="section-title">نمونه‌ای از پروژه‌های کلیدی</h2>
+      <p class="section-sub">بخشی از پروژه‌های بزرگی که در آن‌ها نقش اجرایی یا مشاوره‌ای داشته‌ام.</p>
+    </div>
+    <div class="grid-3" id="projects-grid">
+      <!-- Content generated dynamically from data/projects.json by js/main.js -->
+    </div>
+  </div>
+</section>
+
 <section class="philosophy">
   <div class="wrap">
     <div class="eyebrow" style="margin-bottom:22px;">APPROACH</div>
@@ -163,32 +176,8 @@
       <div class="eyebrow">RECENT WRITING</div>
       <h2 class="section-title">آخرین یادداشت‌ها</h2>
     </div>
-    <div class="grid-3">
-      <div class="post-card">
-        <div class="post-thumb"></div>
-        <div class="post-body">
-          <div class="post-meta">LEAN CONSTRUCTION</div>
-          <h3>ساخت‌وساز ناب چیست و چرا پروژه‌های عمرانی ایران به آن نیاز دارند؟</h3>
-          <p>معرفی اصول Lean Construction و کاربرد عملی آن در کاهش هدررفت منابع در کارگاه‌های ساختمانی.</p>
-          <a class="more" href="blog/lean-construction-chist.html">ادامه مطلب ←</a>
-        </div>
-      </div>
-      <div class="post-card soon">
-        <div class="post-thumb"></div>
-        <div class="post-body">
-          <div class="post-meta">به‌زودی</div>
-          <h3>۵ اشتباه رایج در مدیریت دانش پروژه‌های ساختمانی</h3>
-          <p>این مقاله در حال آماده‌سازی است.</p>
-        </div>
-      </div>
-      <div class="post-card soon">
-        <div class="post-thumb"></div>
-        <div class="post-body">
-          <div class="post-meta">به‌زودی</div>
-          <h3>Primavera P6 چطور بهره‌وری زمان‌بندی پروژه را بالا می‌برد؟</h3>
-          <p>این مقاله در حال آماده‌سازی است.</p>
-        </div>
-      </div>
+    <div class="grid-3" id="posts-grid" data-limit="3">
+      <!-- Content generated dynamically from data/posts.json by js/main.js -->
     </div>
   </div>
 </section>
@@ -224,6 +213,7 @@
   </div>
 </footer>
 
+<script>window.SITE_ROOT = ""; window.SITE_LANG = "fa";</script>
 <script src="js/main.js"></script>
 </body>
 </html>
