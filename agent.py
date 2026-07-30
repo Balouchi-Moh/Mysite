@@ -49,19 +49,20 @@ if not article_html:
 
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
-# صفحهٔ خودِ مقاله (داخل پوشهٔ articles، پس مسیرها با ../)
+# ساختار صفحه مقاله (لینک برگشت به فولدر blog آپدیت شد)
 article_page = (
     "<!DOCTYPE html>\n<html lang=\"en\" dir=\"ltr\">\n<head>\n"
     "<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
     "<title>Article " + today + " - Lean Construction</title>\n"
-    "<link rel=\"stylesheet\" href=\"../style.css?v=4\">\n</head>\n"
+    "<link rel=\"stylesheet\" href=\"../style.css?v=5\">\n</head>\n"
     "<body style=\"padding:40px 20px;background:#F5F6F7;\">\n"
     "<div class=\"article\" style=\"margin:0 auto;\">\n"
-    "<a href=\"../blog.html\" style=\"color:#C99145;font-weight:700;\">&larr; All Articles</a>\n"
+    "<a href=\"../blog/index.html\" style=\"color:#C99145;font-weight:700;\">&larr; All Articles</a>\n"
     + article_html +
     "\n</div>\n</body>\n</html>"
 )
 
+# ذخیره مقاله در پوشه articles
 os.makedirs("articles", exist_ok=True)
 article_path = "articles/post-" + today + ".html"
 with open(article_path, "w", encoding="utf-8") as f:
@@ -88,18 +89,19 @@ def pretty(ymd):
     except Exception:
         return ymd
 
-# ---------- 4) ساخت کارت‌ها از همهٔ مقاله‌ها (جدیدترین اول) ----------
+# ---------- 4) ساخت کارت‌ها از مقاله‌های موجود ----------
 files = sorted(glob.glob("articles/post-*.html"), reverse=True)
 cards = ""
 for fp in files:
-    base = os.path.basename(fp)            # post-YYYY-MM-DD.html
+    base = os.path.basename(fp)            
     ymd = base.replace("post-", "").replace(".html", "")
     with open(fp, "r", encoding="utf-8") as f:
         html = f.read()
     title = get_title(html)
     excerpt = get_excerpt(html)
     date_pretty = pretty(ymd)
-    href = "articles/" + base
+    # آدرس‌دهی از پوشه blog به پوشه articles
+    href = "../articles/" + base
     cards += (
         "\n<a class=\"post-card\" href=\"" + href + "\">\n"
         "  <div class=\"post-thumb\"></div>\n"
@@ -111,14 +113,15 @@ for fp in files:
         "  </div>\n</a>\n"
     )
 
-# ---------- 5) بازسازی کامل صفحهٔ فهرست blog.html (هدر و فوتر یکدست) ----------
+# ---------- 5) بازسازی index.html داخل فولدر blog ----------
 blog_template = """<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>مقالات | محمد بلوچی - ساخت ناب</title>
-<link rel="stylesheet" href="style.css?v=4">
+<!-- بازگشت به مسیر اصلی برای لود استایل -->
+<link rel="stylesheet" href="../style.css?v=5">
 <style>
 @media(max-width:860px){
   .nav-links{display:flex !important;position:static;flex-direction:row;flex-wrap:wrap;
@@ -130,15 +133,15 @@ blog_template = """<!DOCTYPE html>
 <body>
 <header class="site-header">
   <nav class="nav">
-    <a class="brand" href="index.html">
+    <a class="brand" href="../index.html">
       <span class="brand-mark">MB</span>
       <span class="brand-text"><b>محمد بلوچی</b><span>Lean Construction Consultant</span></span>
     </a>
     <div class="nav-links">
-      <a href="index.html">خانه</a>
-      <a href="services.html">خدمات</a>
-      <a href="resume.html">رزومه</a>
-      <a href="blog.html" class="active">مقالات</a>
+      <a href="../index.html">خانه</a>
+      <a href="../services.html">خدمات</a>
+      <a href="../resume.html">رزومه</a>
+      <a href="index.html" class="active">مقالات</a>
     </div>
   </nav>
 </header>
@@ -157,15 +160,15 @@ blog_template = """<!DOCTYPE html>
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer-top">
-      <a class="brand" href="index.html">
+      <a class="brand" href="../index.html">
         <span class="brand-mark">MB</span>
         <span class="brand-text"><b>محمد بلوچی</b><span>Lean Construction Consultant</span></span>
       </a>
       <div class="footer-links">
-        <a href="index.html">خانه</a>
-        <a href="services.html">خدمات</a>
-        <a href="resume.html">رزومه</a>
-        <a href="blog.html">مقالات</a>
+        <a href="../index.html">خانه</a>
+        <a href="../services.html">خدمات</a>
+        <a href="../resume.html">رزومه</a>
+        <a href="index.html">مقالات</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -179,6 +182,9 @@ blog_template = """<!DOCTYPE html>
 
 year = datetime.datetime.now().strftime("%Y")
 blog_html = blog_template.replace("__CARDS__", cards).replace("__YEAR__", year)
-with open("blog.html", "w", encoding="utf-8") as f:
+
+# ایجاد فولدر blog (در صورت عدم وجود) و ذخیره index.html داخل آن
+os.makedirs("blog", exist_ok=True)
+with open("blog/index.html", "w", encoding="utf-8") as f:
     f.write(blog_html)
-print("Rebuilt blog.html with", len(files), "article(s).")
+print("Rebuilt blog/index.html with", len(files), "article(s).")
