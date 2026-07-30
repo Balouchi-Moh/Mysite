@@ -29,5 +29,5 @@ jobs:
         run: |
           git config --global user.name "AI Agent"
           git config --global user.email "agent@lean-construction.ir"
-          git add articles/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Add daily AI article" && git push)
+          git add -A
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Add daily AI article + refresh blog index" && git push)
