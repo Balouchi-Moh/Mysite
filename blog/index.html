@@ -3,73 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مقالات | محمد بلوچی - ساخت ناب</title>
-<!-- بازگشت به مسیر اصلی برای لود استایل -->
-<link rel="stylesheet" href="../style.css?v=5">
-<style>
-@media(max-width:860px){
-  .nav-links{display:flex !important;position:static;flex-direction:row;flex-wrap:wrap;
-    background:transparent;border:0;box-shadow:none;padding:0;gap:4px;}
-  .nav-toggle{display:none !important;}
-}
-</style>
+<title>مقالات | محمد بلوچی — یادداشت‌های تخصصی مدیریت ساخت</title>
+<meta name="description" content="یادداشت‌های تخصصی درباره ساخت‌وساز ناب، مدیریت پروژه و مدیریت دانش در صنعت ساخت، نوشته دکتر محمد بلوچی.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+
 <header class="site-header">
   <nav class="nav">
-    <a class="brand" href="../index.html">
+    <a href="../index.html" class="brand">
       <span class="brand-mark">MB</span>
-      <span class="brand-text"><b>محمد بلوچی</b><span>Lean Construction Consultant</span></span>
+      <span class="brand-text"><b>محمد بلوچی</b><span>CONSTRUCTION MGMT.</span></span>
     </a>
-    <div class="nav-links">
-      <a href="../index.html">خانه</a>
-      <a href="../services.html">خدمات</a>
-      <a href="../resume.html">رزومه</a>
-      <a href="index.html" class="active">مقالات</a>
-    </div>
+    <button class="nav-toggle" aria-label="باز کردن منو">☰</button>
+    <ul class="nav-links">
+      <li><a href="../index.html">درباره من</a></li>
+      <li><a href="../services.html">خدمات</a></li>
+      <li><a href="../resume.html">سوابق و رزومه</a></li>
+      <li><a href="index.html" class="active">مقالات</a></li>
+      <li><a href="../en/blog/index.html" class="lang-switch">EN</a></li>
+      <li><a href="../contact.html" class="nav-cta">تماس با من</a></li>
+    </ul>
   </nav>
 </header>
 
-<section>
+<section class="hero crop" style="padding:56px 0 64px;">
   <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">AI KNOWLEDGE BASE</div>
-      <h1 class="section-title">مقالات روزانهٔ ساخت ناب و مهندسی ارزش</h1>
-      <p class="section-sub">این فهرست هر روز به‌صورت خودکار توسط یک عامل هوش مصنوعی به‌روزرسانی می‌شود. جدیدترین مقاله در صدر قرار دارد.</p>
-    </div>
-    <div class="grid-3">
-<a class="post-card" href="../articles/post-2026-07-30.html">
-  <div class="post-thumb"></div>
-  <div class="post-body">
-    <div class="post-meta">30 July 2026 &middot; AI Generated</div>
-    <h3>Optimizing High-Rise Construction Workflows Through Takt Time Planning</h3>
-    <p>In the realm of modern civil engineering and project delivery, conventional scheduling methodologies like the Critical Path Method (CPM) frequently fail to maintain smoot…</p>
-    <span class="more">Read Article &rarr;</span>
+    <div class="eyebrow">NOTES</div>
+    <h1 class="hero-title" style="font-size:clamp(28px,4vw,42px);">یادداشت‌های تخصصی</h1>
+    <p class="hero-desc">مطالبی درباره ساخت‌وساز ناب، مدیریت پروژه و مدیریت دانش — مبتنی بر تجربه‌ی واقعی پروژه‌های عمرانی بزرگ.</p>
   </div>
-</a>
-</div>
+</section>
+
+<section class="reveal">
+  <div class="wrap">
+    <div class="grid-3" id="posts-grid">
+      <!-- Content generated dynamically from ../data/posts.json by js/main.js -->
+    </div>
   </div>
 </section>
 
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer-top">
-      <a class="brand" href="../index.html">
+      <div class="brand" style="color:var(--ink-on-navy);">
         <span class="brand-mark">MB</span>
-        <span class="brand-text"><b>محمد بلوچی</b><span>Lean Construction Consultant</span></span>
-      </a>
-      <div class="footer-links">
-        <a href="../index.html">خانه</a>
-        <a href="../services.html">خدمات</a>
-        <a href="../resume.html">رزومه</a>
-        <a href="index.html">مقالات</a>
+        <span class="brand-text"><b>محمد بلوچی</b><span>مشاور مدیریت ساخت</span></span>
       </div>
+      <ul class="footer-links">
+        <li><a href="../index.html">درباره من</a></li>
+        <li><a href="../services.html">خدمات</a></li>
+        <li><a href="../resume.html">رزومه</a></li>
+        <li><a href="index.html">مقالات</a></li>
+        <li><a href="../contact.html">تماس</a></li>
+      </ul>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 Lean Construction</span>
-      <span>Auto-published by AI Agent</span>
+      <span>© ۲۰۲۶ Mohammad Balouchi — تمامی حقوق محفوظ است</span>
+      <span>balouchi@gmail.com · +98 912 820 0682</span>
     </div>
   </div>
 </footer>
+
+<script>window.SITE_ROOT = "../"; window.SITE_LANG = "fa";</script>
+<script src="../js/main.js"></script>
 </body>
 </html>
