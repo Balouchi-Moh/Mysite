@@ -1,12 +1,10 @@
 name: Daily AI Agent
 
-# این بخش می‌گوید ربات چه زمانی اجرا شود
 on:
   schedule:
-    - cron: '0 8 * * *' # هر روز ساعت 8 صبح (به وقت جهانی)
-  workflow_dispatch: # این خط اجازه می‌دهد خودمان دستی هم ربات را اجرا کنیم
+    - cron: '0 8 * * *'
+  workflow_dispatch:
 
-# دادن دسترسی به ربات برای ذخیره فایل در سایت
 permissions:
   contents: write
 
@@ -23,11 +21,11 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: pip install openai
+        run: pip install google-generativeai
 
       - name: Run AI Agent
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python agent.py
 
       - name: Commit and push changes
@@ -35,5 +33,4 @@ jobs:
           git config --global user.name "AI Agent"
           git config --global user.email "agent@lean-construction.ir"
           git add articles/
-          # اگر مقاله جدیدی بود، آن را ذخیره کن
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Add daily AI article" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Add daily AI article (Gemini)" && git push)
