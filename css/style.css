@@ -3,15 +3,9 @@
    Design tokens: Minimal Editorial / Navy & Gold
    =========================================================== */
 
-/* Self-hosted Vazirmatn (variable font) — no external CDN dependency */
-@font-face{
-  font-family:'Vazirmatn';
-  src:url('../fonts/Vazirmatn-Variable.woff2') format('woff2-variations'),
-      url('../fonts/Vazirmatn-Variable.woff2') format('woff2');
-  font-weight:100 900;
-  font-style:normal;
-  font-display:swap;
-}
+/* Persian font: Tahoma is the most universally-installed, familiar
+   Persian-safe font across Windows/Mac/Linux — no webfont download
+   needed at all, so it always renders instantly and looks "normal". */
 
 :root{
   /* --- colors --- */
@@ -29,11 +23,8 @@
   --gold-deep:   #96692A;
   --ok-green:    #4E8B6B;
 
-  /* --- type ---
-     Persian: self-hosted Vazirmatn, falls back to universal system fonts
-     that render Persian correctly even before/without the webfont.
-     Latin/serif accents: web-safe serif already on every OS. */
-  --font-fa: 'Vazirmatn', Tahoma, 'Segoe UI', Arial, sans-serif;
+  /* --- type --- */
+  --font-fa: Tahoma, 'Segoe UI', Arial, sans-serif;
   --font-serif: Georgia, 'Times New Roman', Tahoma, serif;
 
   --radius: 4px;
@@ -163,6 +154,7 @@ h1,h2,h3,h4{margin:0;font-family:var(--font-fa);font-weight:800;}
 .hero-desc{
   color:var(--ink-on-navy-soft);
   font-size:16.5px;max-width:56ch;margin-bottom:28px;
+  text-align:justify;
 }
 .hero-tags{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;}
 .tag{
@@ -209,7 +201,7 @@ section{padding:80px 0;}
 .section-title{
   font-size:clamp(22px,3vw,32px);font-weight:800;margin-top:14px;letter-spacing:-.005em;
 }
-.section-sub{color:var(--ink-soft);margin-top:12px;font-size:15.5px;}
+.section-sub{color:var(--ink-soft);margin-top:12px;font-size:15.5px;text-align:justify;}
 
 .alt{background:var(--paper-dim);}
 
@@ -245,7 +237,7 @@ section{padding:80px 0;}
 .card:hover{border-color:var(--gold);}
 .card .num{font-family:var(--font-serif);font-style:italic;font-size:13px;color:var(--gold-deep);}
 .card h3{font-size:17.5px;margin:12px 0 10px;font-weight:700;}
-.card p{color:var(--ink-soft);font-size:14.5px;margin:0;}
+.card p{color:var(--ink-soft);font-size:14.5px;margin:0;text-align:justify;}
 .card a.more{display:inline-block;margin-top:14px;font-size:13.5px;font-weight:600;color:var(--navy-mid);border-bottom:1px solid var(--navy-mid);}
 
 .icon-badge{
@@ -324,7 +316,7 @@ section{padding:80px 0;}
 .post-body{padding:20px 22px;flex:1;display:flex;flex-direction:column;}
 .post-meta{font-family:var(--font-serif);font-style:italic;font-size:12px;color:var(--gold-deep);margin-bottom:10px;}
 .post-body h3{font-size:16.5px;margin:0 0 10px;line-height:1.5;}
-.post-body p{color:var(--ink-soft);font-size:14px;margin:0;flex:1;}
+.post-body p{color:var(--ink-soft);font-size:14px;margin:0;flex:1;text-align:justify;}
 .post-body a.more{margin-top:14px;font-size:13.5px;font-weight:600;color:var(--navy-mid);border-bottom:1px solid var(--navy-mid);align-self:flex-start;}
 .post-card.soon{opacity:.6;}
 .post-card.soon .post-meta{color:var(--ink-soft);}
@@ -332,9 +324,9 @@ section{padding:80px 0;}
 /* article page */
 .article{max-width:760px;margin:0 auto;}
 .article h1{font-size:clamp(25px,4vw,36px);font-weight:800;line-height:1.5;margin:18px 0 20px;}
-.article .lead{font-family:var(--font-serif);font-style:italic;font-size:17px;color:var(--ink-soft);margin-bottom:34px;}
+.article .lead{font-family:var(--font-serif);font-style:italic;font-size:17px;color:var(--ink-soft);margin-bottom:34px;text-align:justify;}
 .article h2{font-size:21px;font-weight:700;margin:36px 0 14px;}
-.article p{font-size:16px;margin:0 0 18px;color:var(--ink);}
+.article p{font-size:16px;margin:0 0 18px;color:var(--ink);text-align:justify;}
 .article ul{margin:0 0 18px;padding-inline-start:22px;list-style:disc;color:var(--ink);}
 .article li{margin-bottom:8px;}
 
