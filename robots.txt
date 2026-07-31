@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://leanconstruction.ir/sitemap.xml
+Sitemap: https://lean-construction.ir/sitemap.xml

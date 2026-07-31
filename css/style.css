@@ -3,9 +3,16 @@
    Design tokens: Minimal Editorial / Navy & Gold
    =========================================================== */
 
-/* Persian font: Tahoma is the most universally-installed, familiar
-   Persian-safe font across Windows/Mac/Linux — no webfont download
-   needed at all, so it always renders instantly and looks "normal". */
+/* Self-hosted Vazirmatn (variable font) — no external CDN dependency,
+   so it always loads instantly and looks the same everywhere. */
+@font-face{
+  font-family:'Vazirmatn';
+  src:url('../fonts/Vazirmatn-Variable.woff2') format('woff2-variations'),
+      url('../fonts/Vazirmatn-Variable.woff2') format('woff2');
+  font-weight:100 900;
+  font-style:normal;
+  font-display:swap;
+}
 
 :root{
   /* --- colors --- */
@@ -24,7 +31,7 @@
   --ok-green:    #4E8B6B;
 
   /* --- type --- */
-  --font-fa: Tahoma, 'Segoe UI', Arial, sans-serif;
+  --font-fa: 'Vazirmatn', Tahoma, 'Segoe UI', Arial, sans-serif;
   --font-serif: Georgia, 'Times New Roman', Tahoma, serif;
 
   --radius: 4px;
