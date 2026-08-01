@@ -28,7 +28,7 @@ jobs:
 
       - name: Generate weekly post draft
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
         run: python scripts/generate_weekly_post.py
 
       - name: Open Pull Request for review
