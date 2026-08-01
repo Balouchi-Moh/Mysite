@@ -121,7 +121,7 @@ def find_next_article():
     return None
 
 
-def call_deepseek(article):
+def call_OPENROUTER(article):
     prompt = f"""You are a professional construction-management consultant
 writing a short blog note for your own website, based on an article you
 read elsewhere. You must NOT translate or reproduce the source text —
@@ -152,17 +152,17 @@ these fields:
 }}
 """
     payload = {
-        "model": "deepseek-chat",
+        "model": "OPENROUTER-chat",
         "messages": [{"role": "user", "content": prompt}],
         "temperature": 0.7,
         "response_format": {"type": "json_object"},
     }
     req = urllib.request.Request(
-        DEEPSEEK_URL,
+        OPENROUTER_URL,
         data=json.dumps(payload).encode("utf-8"),
         headers={
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {DEEPSEEK_API_KEY}",
+            "Authorization": f"Bearer {OPENROUTER_API_KEY}",
         },
         method="POST",
     )
@@ -171,7 +171,7 @@ these fields:
             data = json.loads(resp.read().decode("utf-8"))
     except urllib.error.HTTPError as e:
         body = e.read().decode("utf-8", errors="replace")
-        print(f"DeepSeek API returned HTTP {e.code}. Full response body:\n{body}")
+        print(f"OPENROUTER API returned HTTP {e.code}. Full response body:\n{body}")
         raise
     text = data["choices"][0]["message"]["content"]
     return json.loads(text)
@@ -193,8 +193,8 @@ def fill_template(template_path, tokens):
 
 
 def main():
-    if not DEEPSEEK_API_KEY:
-        print("ERROR: DEEPSEEK_API_KEY environment variable is not set.")
+    if not OPENROUTER_API_KEY:
+        print("ERROR: OPENROUTER_API_KEY environment variable is not set.")
         sys.exit(1)
 
     article = find_next_article()
@@ -203,8 +203,8 @@ def main():
         return
 
     print(f"Found new article: {article['source_title']} ({article['source_url']})")
-    print("Calling DeepSeek to write an original summary + analysis...")
-    result = call_deepseek(article)
+    print("Calling OPENROUTER to write an original summary + analysis...")
+    result = call_OPENROUTER(article)
 
     slug = slugify(result["title_en"])
     today = datetime.date.today().isoformat()
