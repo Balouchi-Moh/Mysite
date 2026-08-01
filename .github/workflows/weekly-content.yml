@@ -1,0 +1,48 @@
+name: Weekly Content Draft
+
+# Runs every Monday at 06:00 UTC (~9:30 AM Iran time), and can also be
+# triggered manually from the Actions tab for testing (workflow_dispatch).
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  generate-draft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Generate weekly post draft
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/generate_weekly_post.py
+
+      - name: Open Pull Request for review
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "مقاله‌ی هفتگی جدید (پیش‌نویس خودکار)"
+          branch: weekly-post-draft
+          delete-branch: true
+          title: "📝 پیش‌نویس مقاله‌ی هفتگی جدید — نیاز به تأیید شما"
+          body: |
+            این پیش‌نویس به‌صورت خودکار از منابع معتبر (طبق فایل `scripts/sources.json`) تهیه شده — خلاصه و تحلیل اصیل، نه ترجمه.
+
+            **قبل از انتشار حتماً بررسی کن:**
+            - محتوا رو بخون (تب "Files changed" پایین همین صفحه)
+            - اگه خوب بود، دکمه‌ی سبز **Merge pull request** رو بزن تا مستقیم روی سایت منتشر بشه
+            - اگه دوست نداشتی، فقط این PR رو **Close** کن (چیزی منتشر نمی‌شه)
+          labels: content-review
