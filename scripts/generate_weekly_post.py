@@ -83,9 +83,18 @@ def find_next_article():
         except Exception as e:
             print(f"  ! feed error: {e}")
             continue
+        if getattr(feed, "bozo", 0):
+            print(f"  ! feed parse warning (bozo): {feed.get('bozo_exception')}")
+        print(f"  -> {len(feed.entries)} entries found in this feed")
+        if not feed.entries:
+            print("  -> feed returned zero entries; check the feed_url is correct "
+                  "and reachable (try opening it in a browser).")
         for entry in feed.entries:
             link = entry.get("link")
-            if not link or link in used_urls:
+            if not link:
+                continue
+            if link in used_urls:
+                print(f"  -> already processed, skipping: {link}")
                 continue
             title = entry.get("title", "").strip()
             body = fetch_article_text(link)
