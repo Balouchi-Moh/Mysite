@@ -165,8 +165,13 @@ these fields:
         headers={"Content-Type": "application/json"},
         method="POST",
     )
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        data = json.loads(resp.read().decode("utf-8"))
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        body = e.read().decode("utf-8", errors="replace")
+        print(f"Gemini API returned HTTP {e.code}. Full response body:\n{body}")
+        raise
     text = data["candidates"][0]["content"]["parts"][0]["text"]
     return json.loads(text)
 
