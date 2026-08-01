@@ -79,12 +79,27 @@ def find_next_article():
     for src in sources:
         print(f"Checking source: {src['name']} ({src['feed_url']})")
         try:
-            feed = feedparser.parse(src["feed_url"])
+            # Fetch with browser-like headers first — some sites block the
+            # default feedparser/urllib user-agent and return a challenge
+            # page instead of the real XML feed, which breaks parsing.
+            resp = requests.get(
+                src["feed_url"],
+                timeout=20,
+                headers={
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                                  "AppleWebKit/537.36 (KHTML, like Gecko) "
+                                  "Chrome/120.0 Safari/537.36",
+                    "Accept": "application/rss+xml, application/xml, text/xml, */*",
+                },
+            )
+            resp.raise_for_status()
+            feed = feedparser.parse(resp.content)
         except Exception as e:
             print(f"  ! feed error: {e}")
             continue
         if getattr(feed, "bozo", 0):
             print(f"  ! feed parse warning (bozo): {feed.get('bozo_exception')}")
+            print(f"  -> first 300 chars of response, for debugging: {resp.text[:300]!r}")
         print(f"  -> {len(feed.entries)} entries found in this feed")
         if not feed.entries:
             print("  -> feed returned zero entries; check the feed_url is correct "
