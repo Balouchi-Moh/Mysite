@@ -24,12 +24,8 @@ import feedparser
 from bs4 import BeautifulSoup
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
-GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.0-flash")
-GEMINI_URL = (
-    f"https://generativelanguage.googleapis.com/v1beta/models/"
-    f"{GEMINI_MODEL}:generateContent?key={GEMINI_API_KEY}"
-)
+DEEPSEEK_API_KEY = os.environ.get("DEEPSEEK_API_KEY")
+DEEPSEEK_URL = "https://api.deepseek.com/chat/completions"
 
 
 def load_json(path):
@@ -125,7 +121,7 @@ def find_next_article():
     return None
 
 
-def call_gemini(article):
+def call_deepseek(article):
     prompt = f"""You are a professional construction-management consultant
 writing a short blog note for your own website, based on an article you
 read elsewhere. You must NOT translate or reproduce the source text —
@@ -156,23 +152,28 @@ these fields:
 }}
 """
     payload = {
-        "contents": [{"parts": [{"text": prompt}]}],
-        "generationConfig": {"temperature": 0.7, "responseMimeType": "application/json"},
+        "model": "deepseek-chat",
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0.7,
+        "response_format": {"type": "json_object"},
     }
     req = urllib.request.Request(
-        GEMINI_URL,
+        DEEPSEEK_URL,
         data=json.dumps(payload).encode("utf-8"),
-        headers={"Content-Type": "application/json"},
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {DEEPSEEK_API_KEY}",
+        },
         method="POST",
     )
     try:
-        with urllib.request.urlopen(req, timeout=60) as resp:
+        with urllib.request.urlopen(req, timeout=90) as resp:
             data = json.loads(resp.read().decode("utf-8"))
     except urllib.error.HTTPError as e:
         body = e.read().decode("utf-8", errors="replace")
-        print(f"Gemini API returned HTTP {e.code}. Full response body:\n{body}")
+        print(f"DeepSeek API returned HTTP {e.code}. Full response body:\n{body}")
         raise
-    text = data["candidates"][0]["content"]["parts"][0]["text"]
+    text = data["choices"][0]["message"]["content"]
     return json.loads(text)
 
 
@@ -192,8 +193,8 @@ def fill_template(template_path, tokens):
 
 
 def main():
-    if not GEMINI_API_KEY:
-        print("ERROR: GEMINI_API_KEY environment variable is not set.")
+    if not DEEPSEEK_API_KEY:
+        print("ERROR: DEEPSEEK_API_KEY environment variable is not set.")
         sys.exit(1)
 
     article = find_next_article()
@@ -202,8 +203,8 @@ def main():
         return
 
     print(f"Found new article: {article['source_title']} ({article['source_url']})")
-    print("Calling Gemini to write an original summary + analysis...")
-    result = call_gemini(article)
+    print("Calling DeepSeek to write an original summary + analysis...")
+    result = call_deepseek(article)
 
     slug = slugify(result["title_en"])
     today = datetime.date.today().isoformat()
